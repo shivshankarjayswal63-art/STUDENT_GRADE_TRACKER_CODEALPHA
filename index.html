@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grade Tracker - Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Galaxy Background Effects -->
+    <div class="aurora"></div>
+    
+    <div class="galaxy-background">
+        <div class="nebula"></div>
+        <div class="nebula"></div>
+        <div class="nebula"></div>
+        <div class="nebula"></div>
+        <div class="nebula"></div>
+        <div class="nebula"></div>
+    </div>
+    
+    <div class="galaxy-swirl"></div>
+    
+    <div class="stars-container">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+    </div>
+    
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    
+    <div class="cosmic-dust">
+        <div class="dust-particle"></div>
+        <div class="dust-particle"></div>
+        <div class="dust-particle"></div>
+        <div class="dust-particle"></div>
+        <div class="dust-particle"></div>
+        <div class="dust-particle"></div>
+        <div class="dust-particle"></div>
+        <div class="dust-particle"></div>
+        <div class="dust-particle"></div>
+        <div class="dust-particle"></div>
+    </div>
+    
+    <!-- Background Illusion Effects -->
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    
+    <div class="grid-pattern"></div>
+    
+    <div class="glow-orb"></div>
+    <div class="glow-orb"></div>
+    <div class="glow-orb"></div>
+    
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1><i class="fas fa-graduation-cap"></i> Student Grade Tracker</h1>
+            <p>Monitor and manage student performance with ease</p>
+        </div>
+
+        <!-- Dashboard Stats -->
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon stats-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div>
+                        <div class="card-title">Total Students</div>
+                        <div class="card-value" id="totalStudents">0</div>
+                        <div class="card-subtitle">Enrolled students</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon add-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div>
+                        <div class="card-title">Average Grade</div>
+                        <div class="card-value" id="averageGrade">0.00</div>
+                        <div class="card-subtitle">Class performance</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon list-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div>
+                        <div class="card-title">Highest Grade</div>
+                        <div class="card-value" id="highestGrade">0.00</div>
+                        <div class="card-subtitle">Top performer</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon list-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div>
+                        <div class="card-title">Lowest Grade</div>
+                        <div class="card-value" id="lowestGrade">0.00</div>
+                        <div class="card-subtitle">Needs attention</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Student Form -->
+        <div class="form-section">
+            <h2 class="form-title">
+                <i class="fas fa-plus-circle"></i>
+                Add New Student
+            </h2>
+            <form id="studentForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="studentName" class="form-label">Student Name</label>
+                        <input type="text" id="studentName" class="form-input" placeholder="Enter student name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentGrade" class="form-label">Grade (0.0 - 100.0)</label>
+                        <input type="number" id="studentGrade" class="form-input" step="0.1" min="0" max="100" placeholder="Enter grade" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Add Student
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Students Table -->
+        <div class="table-section">
+            <div class="table-header">
+                <h2 class="table-title">
+                    <i class="fas fa-list"></i>
+                    Student Records
+                </h2>
+                <div class="table-actions">
+                    <button class="btn btn-primary" onclick="showStatistics()">
+                        <i class="fas fa-chart-pie"></i>
+                        View Statistics
+                    </button>
+                    <button class="btn btn-secondary" onclick="exportData()">
+                        <i class="fas fa-download"></i>
+                        Export Data
+                    </button>
+                    <button class="btn btn-danger" onclick="clearAllData()">
+                        <i class="fas fa-trash-alt"></i>
+                        Clear All
+                    </button>
+                </div>
+            </div>
+
+            <div class="no-students" id="noStudents">
+                <i class="fas fa-user-graduate"></i>
+                <h3>No Students Yet</h3>
+                <p>Add your first student to get started!</p>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Student Name</th>
+                        <th>Grade</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="studentsTableBody">
+                    <!-- Student rows will be populated here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Statistics Modal -->
+    <div id="statsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <i class="fas fa-chart-pie"></i>
+                    Detailed Statistics
+                </h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+
+            <div class="stats-grid">
+                <div class="card">
+                    <div class="card-title">Total Students</div>
+                    <div class="card-value" id="modalTotalStudents">0</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Average Grade</div>
+                    <div class="card-value" id="modalAverageGrade">0.00</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Highest Grade</div>
+                    <div class="card-value" id="modalHighestGrade">0.00</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Lowest Grade</div>
+                    <div class="card-value" id="modalLowestGrade">0.00</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Grade Range</div>
+                    <div class="card-value" id="modalGradeRange">0.00</div>
+                </div>
+            </div>
+
+            <div class="grade-distribution">
+                <h3>Grade Distribution</h3>
+                <div class="grade-label">
+                    <span class="grade-letter">A (90-100)</span>
+                    <span class="grade-count" id="countA">0</span>
+                </div>
+                <div class="grade-bar">
+                    <div class="grade-fill" id="gradeA" style="width: 0%"></div>
+                </div>
+
+                <div class="grade-label">
+                    <span class="grade-letter">B (80-89)</span>
+                    <span class="grade-count" id="countB">0</span>
+                </div>
+                <div class="grade-bar">
+                    <div class="grade-fill" id="gradeB" style="width: 0%"></div>
+                </div>
+
+                <div class="grade-label">
+                    <span class="grade-letter">C (70-79)</span>
+                    <span class="grade-count" id="countC">0</span>
+                </div>
+                <div class="grade-bar">
+                    <div class="grade-fill" id="gradeC" style="width: 0%"></div>
+                </div>
+
+                <div class="grade-label">
+                    <span class="grade-letter">D (60-69)</span>
+                    <span class="grade-count" id="countD">0</span>
+                </div>
+                <div class="grade-bar">
+                    <div class="grade-fill" id="gradeD" style="width: 0%"></div>
+                </div>
+
+                <div class="grade-label">
+                    <span class="grade-letter">F (0-59)</span>
+                    <span class="grade-count" id="countF">0</span>
+                </div>
+                <div class="grade-bar">
+                    <div class="grade-fill" id="gradeF" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Performance Graph Modal -->
+    <div id="performanceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <i class="fas fa-chart-line"></i>
+                    Student Performance Graph
+                </h2>
+                <span class="close" onclick="closePerformanceModal()">&times;</span>
+            </div>
+
+            <div class="performance-header">
+                <div class="student-info">
+                    <h3 id="performanceStudentName">Student Name</h3>
+                    <p id="performanceStudentGrade">Current Grade: 0.00</p>
+                </div>
+                <div class="performance-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Grade Trend:</span>
+                        <span class="stat-value" id="gradeTrend">Stable</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Improvement:</span>
+                        <span class="stat-value" id="gradeImprovement">0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="performanceChart"></canvas>
+            </div>
+
+            <div class="performance-analysis">
+                <h4>Performance Analysis</h4>
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <div class="analysis-icon">
+                            <i class="fas fa-trending-up"></i>
+                        </div>
+                        <div class="analysis-content">
+                            <h5>Performance Trend</h5>
+                            <p id="trendAnalysis">Loading analysis...</p>
+                        </div>
+                    </div>
+                    <div class="analysis-card">
+                        <div class="analysis-icon">
+                            <i class="fas fa-target"></i>
+                        </div>
+                        <div class="analysis-content">
+                            <h5>Grade Goal</h5>
+                            <p id="goalAnalysis">Loading analysis...</p>
+                        </div>
+                    </div>
+                    <div class="analysis-card">
+                        <div class="analysis-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="analysis-content">
+                            <h5>Recommendations</h5>
+                            <p id="recommendations">Loading recommendations...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-text">
+                <p>&copy; 2025 Student Grade Tracker. All rights reserved.</p>
+                <p class="developer-info">
+                    <i class="fas fa-code"></i>
+                    Developed with ❤️ by <span class="developer-name">Shivshankar Kumar Jaysawal</span>
+                </p>
+            </div>
+            <div class="footer-links">
+                <a href="#" class="footer-link">
+                    <i class="fas fa-info-circle"></i>
+                    About
+                </a>
+                <a href="#" class="footer-link">
+                    <i class="fas fa-question-circle"></i>
+                    Help
+                </a>
+                <a href="#" class="footer-link">
+                    <i class="fas fa-envelope"></i>
+                    Contact
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
